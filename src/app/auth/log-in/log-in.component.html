@@ -1,0 +1,26 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Вход</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="info.login" name="login" placeholder="Имя пользователя">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="info.password" name="password" type="password" placeholder="Пароль">
+          </mat-form-field>
+        </mat-card-content>
+        <div class="login-Error"
+        *ngIf="hasError">
+        Неверное имя пользователя или пароль
+      </div>
+        <button mat-stroked-button color="accent" class="btn-block" (click)="logIn();">Войти</button>
+      </form>
+    </mat-card>
+  
+  </div>
