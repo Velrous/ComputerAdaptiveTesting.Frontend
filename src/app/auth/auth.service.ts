@@ -35,7 +35,7 @@ export class AuthService {
     async logIn(login: string, password: string): Promise<AuthInfoModel> {
         let authInfo: AuthInfoModel = null;
 
-        const authRequest = await this.http.post<any>("api/Auth/Login", {
+        const authRequest = await this.http.post<any>("/api/Auth/Login", {
             Login: login,
             Password: password
         })
@@ -65,15 +65,10 @@ export class AuthService {
         return authInfo;
     }
 
-    async register(registerModel: RegisterModel) {
-        const request = this.http.post<any>("api/Auth/Register", registerModel);
+    async register(registerModel: RegisterModel): Promise<void> {
+        const request = await this.http.post<void>("/api/Auth/Register", registerModel).toPromise();
         console.log("Register request", request);
-        if(request)
-        {
-            this.redirectUrl = "api/Auth/Login";
-            return true;
-        }
-        return false;
+        return request;
     }
 
     getRolesForRegistration(): Observable<Role[]> {

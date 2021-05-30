@@ -11,20 +11,20 @@
   
         <mat-card-content>
           <mat-form-field class="w-100 form-group">
-            <input class="h-100" type="text" name="login" matInput required minlength="6" placeholder="Имя пользователя" 
-             [(ngModel)]="register.login" #login="ngModel">
+            <input class="h-100" type="text" name="login" matInput required minlength="5" placeholder="Имя пользователя" 
+             [(ngModel)]="registrationModel.login" #login="ngModel">
           </mat-form-field>
           <div class="alert alert-danger" *ngIf="login.invalid && (login.dirty || login.touched)">
               <div *ngIf="login.errors?.required">
                 Имя пользователя не введено
               </div>
               <div *ngIf="login.errors?.minlength">
-                Имя пользователя должно быть не короче 6 символов
+                Имя пользователя должно быть не короче 5 символов
               </div>
           </div>
   
           <mat-form-field class="w-100">
-            <input class="h-100" type="email" name="email" matInput required placeholder="Email" [(ngModel)]="register.email" #email="ngModel" ngModel email="true">
+            <input class="h-100" type="email" name="email" matInput required placeholder="Email" [(ngModel)]="registrationModel.email" #email="ngModel" ngModel email="true">
           </mat-form-field>
           <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
             <div *ngIf="email.errors?.required">
@@ -37,7 +37,7 @@
 
           <mat-form-field class="w-100">
             <mat-label>Выберите роль...</mat-label>
-            <mat-select name="roleId" [(ngModel)]="register.roleId" #roleId="ngModel" required>
+            <mat-select name="roleId" [(ngModel)]="registrationModel.roleId" #roleId="ngModel" required>
               <mat-option [value]="role.Id" *ngFor="let role of roles">{{role.Name}}
               </mat-option>
             </mat-select>
@@ -47,16 +47,16 @@
           </div>
   
           <mat-form-field class="w-100">
-            <input class="h-100" matInput placeholder="Пароль">
+            <input class="h-100" type="password" name="password" matInput required placeholder="Пароль" [(ngModel)]="registrationModel.password" #password="ngModel" ngModel password="true">
           </mat-form-field>
 
           <mat-form-field class="w-100">
-            <input class="h-100" matInput placeholder="Подтверждение пароля">
+            <input class="h-100" type="password" name="confirmPassword" matInput required placeholder="Подтверждение пароля" [(ngModel)]="registrationModel.confirmPassword" #confirmPassword="ngModel" ngModel confirmPassword="true">
           </mat-form-field>
   
         </mat-card-content>
   
-        <button mat-stroked-button color="accent" class="btn-block">Зарегистрироваться</button>
+        <button mat-stroked-button color="accent" class="btn-block" (click)="register();">Зарегистрироваться</button>
   
       </form>
     </mat-card>

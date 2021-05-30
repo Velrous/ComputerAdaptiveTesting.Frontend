@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Role } from 'src/app/models/role.model';
 import { AuthService } from '../auth.service';
+import { RegisterModel } from '../models/register.model';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
   hasError = false;
   registerForm = null;
-  register = {
+  registrationModel = {
     login: "",
     email: "",
     password: "",
@@ -38,5 +39,22 @@ export class RegisterComponent implements OnInit {
   };
 
   ngOnInit() {
+  }
+
+  register() {
+    if(this.registrationModel.password == this.registrationModel.confirmPassword)
+    {
+      let registerModel = new RegisterModel(
+        null,
+        this.registrationModel.login,
+        this.registrationModel.password,
+        null,
+        this.registrationModel.roleId,
+        true,
+        this.registrationModel.email
+      );
+      console.log("Register", registerModel);
+      this.authService.register(registerModel);
+    }
   }
 }
