@@ -41,7 +41,7 @@ export class LogInComponent implements OnInit {
         if(this.authService.redirectUrl) {
           this.router.navigate([this.authService.redirectUrl]);
         } else {
-          this.router.navigate(['./Main']);
+          this.router.navigate(['./home']);
         }
       }
     }, 10);
