@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Role } from "../models/role.model";
+import { Role } from "../test/models/role.model";
 import { AuthInfoModel } from "./models/auth-info.model";
 import { RegisterModel } from "./models/register.model";
 

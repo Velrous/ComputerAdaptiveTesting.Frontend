@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Role } from 'src/app/models/role.model';
+import { Role } from 'src/app/test/models/role.model';
 import { AuthService } from '../auth.service';
 import { RegisterModel } from '../models/register.model';
 
