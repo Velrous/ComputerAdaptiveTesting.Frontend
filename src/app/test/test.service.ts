@@ -1,10 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Test } from "./models/test.model";
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root'
+})
 export class TestService { 
 
     public token = '';
@@ -24,6 +25,17 @@ export class TestService {
         console.log("Test request", request);
         return request;
     }
+
+    getTests(): Observable<Test[]> {
+      console.log("getTests");
+      const headers = {
+          Authorization: 'Bearer ' + this.getToken()
+      }
+      console.log("headers", headers);
+      const request = this.http.get<Test[]>('/api/Tests', {headers: headers});
+      console.log("Tests", request);
+      return request;
+  }
 
     private getToken(): string {
         this.localToken = localStorage.getItem('Token') || sessionStorage.getItem('Token');

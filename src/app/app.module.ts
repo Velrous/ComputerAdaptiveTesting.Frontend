@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTestComponent } from './test/createTest/createTest.component';
 import { MainComponent } from './main/main.component';
+import { PassTestComponent } from './test/pass-test/pass-test.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MainComponent } from './main/main.component';
     LogInComponent,
     RegisterComponent,
     CreateTestComponent,
-    MainComponent
+    MainComponent,
+    PassTestComponent
   ],
   imports: [
     BrowserModule,

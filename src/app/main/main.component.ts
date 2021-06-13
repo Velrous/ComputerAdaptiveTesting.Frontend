@@ -18,4 +18,8 @@ export class MainComponent implements OnInit {
   createTest() {
     this.router.navigate(['./create']);
   }
+
+  passTest() {
+    this.router.navigate(['./pass']);
+  }
 }

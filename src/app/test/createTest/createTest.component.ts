@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Answer } from '../models/answer.model';
 import { Question } from '../models/question.model';
 import { Test } from '../models/test.model';
@@ -12,7 +13,8 @@ import { TestService } from '../test.service';
 export class CreateTestComponent implements OnInit {
 
   constructor(
-    private testService: TestService
+    private testService: TestService,
+    private router: Router
   ) { }
 
   isCreateTest = true;
@@ -57,15 +59,16 @@ export class CreateTestComponent implements OnInit {
     {
       let question = new Question();
       question.Name = this.questionModel.questionName;
-      this.answers.push(new Answer(this.answersModel.name1, this.answersModel.isRight1));
-      this.answers.push(new Answer(this.answersModel.name2, this.answersModel.isRight2));
-      this.answers.push(new Answer(this.answersModel.name3, this.answersModel.isRight3));
-      this.answers.push(new Answer(this.answersModel.name4, this.answersModel.isRight4));
+      this.answers.push(new Answer(null, this.answersModel.name1, this.answersModel.isRight1));
+      this.answers.push(new Answer(null, this.answersModel.name2, this.answersModel.isRight2));
+      this.answers.push(new Answer(null, this.answersModel.name3, this.answersModel.isRight3));
+      this.answers.push(new Answer(null, this.answersModel.name4, this.answersModel.isRight4));
       question.Answers = this.answers;
       this.questions.push(question);
       console.log("createTest", this.questions);
       this.test.Questions = this.questions;
       this.testService.createTest(this.test);
+      this.router.navigate(['./home']);
     }
   }
 
@@ -76,10 +79,10 @@ export class CreateTestComponent implements OnInit {
     {
       let question = new Question();
       question.Name = this.questionModel.questionName;
-      this.answers.push(new Answer(this.answersModel.name1, this.answersModel.isRight1));
-      this.answers.push(new Answer(this.answersModel.name2, this.answersModel.isRight2));
-      this.answers.push(new Answer(this.answersModel.name3, this.answersModel.isRight3));
-      this.answers.push(new Answer(this.answersModel.name4, this.answersModel.isRight4));
+      this.answers.push(new Answer(null, this.answersModel.name1, this.answersModel.isRight1));
+      this.answers.push(new Answer(null, this.answersModel.name2, this.answersModel.isRight2));
+      this.answers.push(new Answer(null, this.answersModel.name3, this.answersModel.isRight3));
+      this.answers.push(new Answer(null, this.answersModel.name4, this.answersModel.isRight4));
       question.Answers = this.answers;
       console.log("5", question);
       this.questions.push(question);
