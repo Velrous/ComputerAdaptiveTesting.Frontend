@@ -50,7 +50,7 @@ export class CreateTestComponent implements OnInit {
 
   createTest() {
     console.log("createTest length", this.questions.length);
-    if(this.questions.length == 0)
+    if(this.isCreateTest && !this.isCreateQuestionsAndAnswers)
     {
       this.test.Name = this.testModel.name;
       this.isCreateTest = false;

@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
       );
       console.log("Register", registerModel);
       this.authService.register(registerModel);
+      this.router.navigate(['./login']);
     }
   }
 }
