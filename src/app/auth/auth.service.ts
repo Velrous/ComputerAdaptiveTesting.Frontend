@@ -10,7 +10,7 @@ import { RegisterModel } from "./models/register.model";
   })
 export class AuthService { 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
     ) { }
 
     public AuthStatusChanged = new EventEmitter<AuthInfoModel>();
@@ -27,6 +27,7 @@ export class AuthService {
 
     authToken?: string = '';
     redirectUrl: string = '';
+    isAuthorize: boolean = false;
 
     getAuthToken() {
         return this.authToken || null;
@@ -61,7 +62,7 @@ export class AuthService {
             localStorage.setItem('Token', this.authToken);
         }
         this.AuthStatusChanged.emit(authInfo);
-
+        this.isAuthorize = true;
         return authInfo;
     }
 
@@ -73,5 +74,9 @@ export class AuthService {
 
     getRolesForRegistration(): Observable<Role[]> {
         return this.http.get<Role[]>('/Api/Auth/Roles');
-    } 
+    }
+    
+    get isUserAuthorize(): boolean {
+        return this.isAuthorize;
+    }
 }

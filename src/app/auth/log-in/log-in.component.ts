@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
 import { AuthService } from '../auth.service';
 
 @Component({

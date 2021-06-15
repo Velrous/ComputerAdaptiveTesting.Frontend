@@ -1,58 +1,75 @@
 <div class="container">
-    <div class="row" style="height:64px"></div>
+    <div class="row" style="height:150px"></div>
     <div class="row">
         <div class="col"></div>
-        <div class="col-md-10">
-            <mat-card class="box">
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <mat-card>
               <div *ngIf="isCreateTest">
-                  <mat-card-header>
+                  <mat-card-header class="justify-content-center">
                     <mat-card-title>Создание теста</mat-card-title>
                   </mat-card-header>
-                  <mat-card-content>
+                  <mat-card-content class="d-flex flex-column justify-content-center">
                     <mat-form-field class="form-group">
                       <input type="text" name="testName" matInput placeholder="Введите название теста" 
                        [(ngModel)]="testModel.name" #testName="ngModel">
                     </mat-form-field>
                     <mat-form-field class="form-group">
-                      <input type="text" name="questionCount" matInput placeholder="Введите количество вопросов" 
-                       [(ngModel)]="testModel.questionCount" #questionCount="ngModel">
+                      <input type="number" name="questionCount" style="font-size: 13pt;" matInput placeholder="Введите количество вопросов" 
+                       [(ngModel)]="testModel.questionCount" #questionCount="ngModel" min="0" max="10">
                     </mat-form-field>
                   </mat-card-content>
-                  <button mat-stroked-button color="accent" class="btn-block" (click)="createTest();">Создать тест</button>
+                  <button mat-raised-button color="primary" class="btn-block w-100" (click)="createTest();">Создать тест</button>
               </div>
               <div *ngIf="isCreateQuestionsAndAnswers">
-                <mat-card-header>
+                <mat-card-header class="justify-content-center">
                   <mat-card-title>Создание вопроса</mat-card-title>
                 </mat-card-header>
-                <mat-card-content>
+                <mat-card-content class="d-flex flex-column justify-content-center">
                   <mat-form-field class="form-group">
                     <input type="text" name="questionName" matInput placeholder="Введите вопрос" 
                      [(ngModel)]="questionModel.questionName" #questionName="ngModel">
                   </mat-form-field>
-                  <mat-form-field class="form-group">
+                  <div *ngFor="let answer of answers" class="d-flex flex-row bd-highlight" style="align-items: center;">
+                    <mat-form-field class="form-group bd-highlight w-100" style="margin-right: 20px;">
+                      <input type="text" name="firstAnswer" matInput placeholder="Введите ответ" 
+                      [(ngModel)]="answer.Name" #firstAnswer="ngModel">
+                    </mat-form-field>
+                    <mat-checkbox class="bd-highlight" (change)="onChange(answer.Id)" [(ngModel)]="answer.IsRight" [disabled]="isChecked && (isCheckedId!=answer.Id)">
+                      Верный ответ?
+                    </mat-checkbox>
+                  </div>
+                  <!-- <div class="d-flex flex-row bd-highlight" style="align-items: center;">
+                  <mat-form-field class="form-group bd-highlight w-100" style="margin-right: 20px;">
                     <input type="text" name="firstAnswer" matInput placeholder="Введите 1 ответ" 
-                     [(ngModel)]="answersModel.name1" #firstAnswer="ngModel">
-                     <mat-checkbox class="example-margin" [(ngModel)]="answersModel.isRight1">Верный ответ?</mat-checkbox>
+                    [(ngModel)]="answersModel.name1" #firstAnswer="ngModel">
                   </mat-form-field>
-                  <mat-form-field class="form-group">
+                  <mat-checkbox class="bd-highlight" [(ngModel)]="answersModel.isRight1">Верный ответ?</mat-checkbox>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight" style="align-items: center;">
+                  <mat-form-field class="form-group bd-highlight w-100" style="margin-right: 20px;">
                     <input type="text" name="secondAnswer" matInput placeholder="Введите 2 ответ" 
                      [(ngModel)]="answersModel.name2" #secondAnswer="ngModel">
-                     <mat-checkbox class="example-margin" [(ngModel)]="answersModel.isRight2">Верный ответ?</mat-checkbox>
                   </mat-form-field>
-                  <mat-form-field class="form-group">
+                  <mat-checkbox class="bd-highlight" [(ngModel)]="answersModel.isRight2">Верный ответ?</mat-checkbox>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight" style="align-items: center;">
+                  <mat-form-field class="form-group bd-highlight w-100" style="margin-right: 20px;">
                     <input type="text" name="thirdAnswer" matInput placeholder="Введите 3 ответ" 
                      [(ngModel)]="answersModel.name3" #thirdAnswer="ngModel">
-                     <mat-checkbox class="example-margin" [(ngModel)]="answersModel.isRight3">Верный ответ?</mat-checkbox>
                   </mat-form-field>
-                  <mat-form-field class="form-group">
+                  <mat-checkbox class="bd-highlight" [(ngModel)]="answersModel.isRight3">Верный ответ?</mat-checkbox>
+                  </div>
+                  <div class="d-flex flex-row bd-highlight" style="align-items: center;">
+                  <mat-form-field class="form-group bd-highlight w-100" style="margin-right: 20px;">
                     <input type="text" name="fourthAnswer" matInput placeholder="Введите 4 ответ" 
                      [(ngModel)]="answersModel.name4" #fourthAnswer="ngModel">
-                     <mat-checkbox class="example-margin" [(ngModel)]="answersModel.isRight4">Верный ответ?</mat-checkbox>
                   </mat-form-field>
+                  <mat-checkbox class="bd-highlight" [(ngModel)]="answersModel.isRight4">Верный ответ?</mat-checkbox>
+                  </div> -->
                 </mat-card-content>
-                <button mat-stroked-button color="accent" *ngIf="index>0" class="btn-block" (click)="previousQuestion();">Назад</button>
-                <button mat-stroked-button color="accent" *ngIf="index+1<testModel.questionCount" class="btn-block" (click)="nextQuestion();">Далее</button>
-                <button mat-stroked-button color="accent" *ngIf="index+1==testModel.questionCount" class="btn-block" (click)="createTest();">Создать тест</button>
+                <button mat-raised-button color="primary" *ngIf="index>0" class="btn-block" (click)="previousQuestion();" style="margin-right: 5px;">Назад</button>
+                <button mat-raised-button color="primary" *ngIf="index+1<testModel.questionCount" class="btn-block" (click)="nextQuestion();">Далее</button>
+                <button mat-raised-button color="primary" *ngIf="index+1==testModel.questionCount" class="btn-block" (click)="createTest();">Создать тест</button>
               </div>
             </mat-card>
         </div>

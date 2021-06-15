@@ -1,10 +1,21 @@
 <div class="container">
-    <div class="row" style="height:64px"></div>
+    <div class="row" style="height:150px"></div>
     <div class="row">
         <div class="col"></div>
-        <div class="col-md-10">
-            <button mat-stroked-button color="accent" class="btn-block" (click)="createTest();">Создать тест</button>
-            <button mat-stroked-button color="accent" class="btn-block" (click)="passTest();">Пройти тест</button>
+        <div class="col-md-6">
+                <mat-card class="d-flex flex-column justify-content-center w-100">
+                    <div class="p-2">
+                        <mat-card-header class="justify-content-center">
+                            <mat-card-title class="w-100">Добро пожаловать!</mat-card-title>
+                        </mat-card-header>
+                    </div>
+                    <div class="p-2">
+                        <button mat-raised-button color="primary" class="btn-block w-100" (click)="createTest();">Создать тест</button>
+                    </div>
+                    <div class="p-2">
+                        <button mat-raised-button color="primary" class="btn-block w-100" (click)="passTest();">Пройти тест</button>
+                    </div>
+                </mat-card>
         </div>
         <div class="col"></div>
     </div>
